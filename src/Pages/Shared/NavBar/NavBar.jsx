@@ -1,21 +1,76 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const nav = (
     <>
-      <li className="text-[#EEFF25]"> <NavLink to="/">HOME</NavLink></li>
-      <li className="text-[#EEFF25]"> <NavLink to="/contactUs">CONTACT US</NavLink></li>
-      <li className="text-[#EEFF25]"> <NavLink to="/dashboard">DASHBOARD</NavLink></li>
-      <li className="text-[#EEFF25]"> <NavLink to="/ourMenu">OUR MENU</NavLink></li>
-      <li className="text-[#EEFF25]"> <NavLink to="/ourShop">OUR SHOP</NavLink></li>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter"
+              : "text-white font-bold font-inter"
+          }
+        >
+          HOME
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contactUs"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter"
+              : "text-white font-bold font-inter"
+          }
+        >
+          CONTACT US
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter"
+              : "text-white font-bold font-inter"
+          }
+        >
+          DASHBOARD
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/ourMenu"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter "
+              : "text-white font-bold font-inter"
+          }
+        >
+          OUR MENU
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/ourShop"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter"
+              : "text-white font-bold font-inter"
+          }
+        >
+          OUR SHOP
+        </NavLink>
+      </li>
     </>
   );
 
   return (
     <div>
-      <div className="navbar bg-black fixed bg-opacity-70 text-white px-16">
+      <div className="navbar max-w-screen-2xl bg-black fixed z-10 text-white bg-opacity-70 py-3 px-8">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown ">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,12 +89,12 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52"
+              className="menu menu-sm  dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52"
             >
               {nav}
             </ul>
           </div>
-          <a className="w-48 text-xl font-cinzel font-bold cursor-pointer">
+          <a className="w-48 text-xl font-cinzel  font-bold cursor-pointer">
             BISTRO BOSS Restaurant
           </a>
         </div>
@@ -47,7 +102,7 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{nav}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <Link>Sign in</Link>
         </div>
       </div>
     </div>
