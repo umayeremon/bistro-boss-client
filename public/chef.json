@@ -1,0 +1,18 @@
+[
+  {
+    "item_name": "Grilled Salmon",
+    "item_materials": "Salmon fillet, Lemon, Garlic, Olive oil, Fresh herbs, Salt, Black pepper",
+    "image":"https://i.ibb.co/DY9kgSH/Grilled-Salmon.jpg"
+    
+  },
+  {
+    "item_name": "Classic Margherita Pizza",
+    "item_materials": "Pizza dough, Tomato sauce, Fresh mozzarella, Fresh basil, Olive oil, Salt",
+    "image":"https://i.ibb.co/82dvdrc/Classic-Margherita-Pizza.jpg"
+  },
+  {
+    "item_name": "Beef Tenderloin Steak",
+    "item_materials": "Beef tenderloin, Salt, Black pepper, Butter, Garlic, Rosemary, Thyme",
+    "image":"https://i.ibb.co/Bn51Mf3/Beef-Tenderloin-Steak.webp"
+  }
+]
