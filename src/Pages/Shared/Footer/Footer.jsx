@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="flex flex-row ">
-        <div className="footer p-10 bg-[#1F2937] text-white flex justify-end pr-48">
+      <footer className="flex flex-col md:flex-row ">
+        <div className="footer p-6 md:p-10 bg-[#1F2937] text-white flex justify-center md:justify-end pr-0 md:pr-48">
           <div className="text-center">
             <div className="text-center w-full">
               <h1 className="text-xl font-bold ">CONTACT US</h1>
@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="footer p-10 bg-[#111827] text-white flex justify-start pl-48">
+        <div className="footer p-4 md:p-10 bg-[#111827] text-white flex justify-center md:justify-start pl-0 md:pl-48">
           <div className="text-center">
             <div className="text-center w-full">
               <h1 className="text-xl font-bold ">Follow US</h1>
