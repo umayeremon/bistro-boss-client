@@ -12,7 +12,7 @@ const ChefCards = () => {
   return (
     <section className="mb-12">
       <SectionTitle heading="CHEF RECOMMENDS" subHeading="---Should Try---"/>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mx-4 md:mx-2">
         {data.map((item, idx) => (
           <ChefCard key={idx} item={item}></ChefCard>
         ))}

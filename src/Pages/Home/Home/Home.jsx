@@ -3,6 +3,7 @@ import Bistro from "../Bistro/Bistro";
 import CallUs from "../CallUs/CallUs";
 import Category from "../Category/Category";
 import ChefCards from "../ChefCards/ChefCards";
+import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 
 
@@ -15,6 +16,7 @@ const Home = () => {
       <PopularMenu/>
       <CallUs/>
       <ChefCards/>
+      <Featured/>
     </div>
   );
 };
