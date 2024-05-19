@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ChefCard from "./ChefCard";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import ChefCard from "./ChefCard";
 
 const ChefCards = () => {
   const [data, setData] = useState([]);
