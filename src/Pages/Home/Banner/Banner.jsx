@@ -8,7 +8,7 @@ import banner5 from "../../../assets/home/05.png";
 import banner6 from "../../../assets/home/06.png";
 const Banner = () => {
   return (
-    <Carousel>
+    <Carousel className="text-center">
       <div>
         <img src={banner2} />
       </div>

@@ -30,7 +30,7 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/ourShop"
+          to="/ourShop/salads"
           className={({ isActive }) =>
             isActive
               ? "text-[#EEFF25] font-bold font-inter"
@@ -103,7 +103,7 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{nav}</ul>
         </div>
         <div className="navbar-end">
-          <Link>Sign in</Link>
+          <Link to={"/login"}>Log in</Link>
         </div>
       </div>
     </div>

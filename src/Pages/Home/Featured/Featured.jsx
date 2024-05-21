@@ -4,8 +4,8 @@ import "./Featured.css";
 
 const Featured = () => {
   return (
-    <section className=" featured-img my-12 bg-cover">
-      <div className="bg-black bg-opacity-40 p-12 text-white">
+    <section className=" featured-img bg-fixed  my-12 bg-cover">
+      <div className="bg-black  bg-opacity-40 p-12 text-white">
         <SectionTitle heading="FROM OUR MENU" subHeading="---Check it out---" />
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 ">
           <img src={featuredImg} alt="" className="w-[300px] lg:w-[400px]" />
