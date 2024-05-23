@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const { signInUser,googleLogin } = useContext(AuthContext);
+  const { signInUser,googleLogin,githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location=useLocation()
   const from=location.state?.from?.pathname || '/'
@@ -66,7 +66,7 @@ const Login = () => {
       setDisabled(true);
     }
   };
-  const handleGoogleRegister=()=>{
+  const handleGoogleLogin=()=>{
     googleLogin()
     .then((result) => {
       console.log(result.user)
@@ -92,8 +92,35 @@ const Login = () => {
     .then((error) => {
       console.log(error);
     });
-
   }
+
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then((result) => {
+        console.log(result.user);
+        if (result.user) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Logged in successfully",
+          });
+          navigate("/");
+        }
+      })
+      .then((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="flex bg-img items-center justify-center mx-2 md:mx-4 min-h-[600px] my-6 lg:my-28  drop-shadow-2xl ">
       <div className="hero-content  flex-col md:flex-row">
@@ -167,8 +194,8 @@ const Login = () => {
           </div>
           <div className="flex flex-row gap-8 mx-auto mt-4">
             <RiFacebookFill className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
-            <PiGoogleLogoLight onClick={handleGoogleRegister} className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
-            <FaGithub className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
+            <PiGoogleLogoLight onClick={handleGoogleLogin} className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
+            <FaGithub onClick={handleGithubLogin} className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
           </div>
         </div>
       </div>
