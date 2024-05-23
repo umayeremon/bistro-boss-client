@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { GiShoppingCart } from "react-icons/gi";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const NavBar = () => {
     logOut();
   };
   const nav = (
-    <>
+    <div className="lg:flex flex-row items-center justify-center">
       <li>
         <NavLink
           to="/"
@@ -19,31 +20,6 @@ const NavBar = () => {
           }
         >
           HOME
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
-          to="/ourMenu"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#EEFF25] font-bold font-inter "
-              : "text-white font-bold font-inter"
-          }
-        >
-          OUR MENU
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/ourShop/salads"
-          className={({ isActive }) =>
-            isActive
-              ? "text-[#EEFF25] font-bold font-inter"
-              : "text-white font-bold font-inter"
-          }
-        >
-          OUR SHOP
         </NavLink>
       </li>
       <li>
@@ -70,7 +46,39 @@ const NavBar = () => {
           DASHBOARD
         </NavLink>
       </li>
-    </>
+      <li>
+        <NavLink
+          to="/ourMenu"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter "
+              : "text-white font-bold font-inter"
+          }
+        >
+          OUR MENU
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/ourShop/salads"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#EEFF25] font-bold font-inter"
+              : "text-white font-bold font-inter"
+          }
+        >
+          OUR SHOP
+        </NavLink>
+      </li>
+      <li>
+        <Link to="/">
+          <div className="bg-green-900 rounded-lg flex flex-row justify-center items-center">
+            <GiShoppingCart className="text-white text-4xl px-1 py-2" />
+            <div className="badge badge-secondary text-xs mr-1">+0</div>
+          </div>
+        </Link>
+      </li>
+    </div>
   );
 
   return (
@@ -114,7 +122,10 @@ const NavBar = () => {
               <button onClick={handleLogout} className="btn btn-ghost">
                 Log Out
               </button>
-              <div className="tooltip tooltip-left cursor-pointer" data-tip={user?.displayName} >
+              <div
+                className="tooltip tooltip-left cursor-pointer"
+                data-tip={user?.displayName}
+              >
                 <img src={user?.photoURL} alt="" className="w-8 rounded-full" />
               </div>
             </>
