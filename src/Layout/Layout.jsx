@@ -3,8 +3,7 @@ import Footer from "../Pages/Shared/Footer/Footer";
 import NavBar from "../Pages/Shared/NavBar/NavBar";
 
 const Layout = () => {
-  const loacation = useLocation();
-  console.log(loacation.pathname);
+  const location = useLocation();
   const isLogin = location.pathname.includes("login") || location.pathname.includes("register");
   return (
     <div>
