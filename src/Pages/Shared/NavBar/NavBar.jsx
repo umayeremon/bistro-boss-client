@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { GiShoppingCart } from "react-icons/gi";
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart]=useCart()
   const handleLogout = () => {
     logOut();
   };
@@ -74,7 +76,7 @@ const NavBar = () => {
         <Link to="/">
           <div className="bg-green-900 rounded-lg flex flex-row justify-center items-center">
             <GiShoppingCart className="text-white text-4xl px-1 py-2" />
-            <div className="badge badge-secondary text-xs mr-1">+0</div>
+            <div className="badge bg-black text-white border-none mr-1">+{cart.length}</div>
           </div>
         </Link>
       </li>

@@ -49,7 +49,7 @@ const Login = () => {
             title: "Logged in successfully",
           });
         }
-        navigate(from,{replace:true})
+        navigate(from, {replace:true})
       })
       .then((error) => {
         console.error(error);
@@ -86,11 +86,11 @@ const Login = () => {
           icon: "success",
           title: "Logged in successfully",
         });
-        navigate('/')
+        navigate(from, {replace:true})
       }
     })
     .then((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
 
@@ -114,7 +114,7 @@ const Login = () => {
             icon: "success",
             title: "Logged in successfully",
           });
-          navigate("/");
+          navigate(from, {replace:true})
         }
       })
       .then((error) => {

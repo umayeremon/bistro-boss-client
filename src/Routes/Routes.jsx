@@ -22,10 +22,6 @@ const router=createBrowserRouter([
         element:<ContactUs/>
       },
       {
-        path:'/dashboard',
-        element:<Dashboard/>
-      },
-      {
         path:'/ourMenu',
         element:<OurMenu/>
       },
@@ -42,7 +38,14 @@ const router=createBrowserRouter([
         element:<Register/>
       },
     ]
-  }
+  },
+  {
+    path:'/dashboard',
+    element:<Dashboard/>,
+    children:[
+      
+    ]
+  },
 ])
 
 export default router
