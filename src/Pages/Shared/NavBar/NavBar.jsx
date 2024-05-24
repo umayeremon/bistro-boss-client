@@ -73,7 +73,7 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <Link to="/">
+        <Link to='/dashboard/myCart'>
           <div className="bg-green-900 rounded-lg flex flex-row justify-center items-center">
             <GiShoppingCart className="text-white text-4xl px-1 py-2" />
             <div className="badge bg-black text-white border-none mr-1">+{cart.length}</div>
