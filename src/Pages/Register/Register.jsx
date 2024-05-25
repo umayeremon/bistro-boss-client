@@ -7,11 +7,13 @@ import "./Register.css";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, userProfileUpdate, googleLogin, githubLogin, logOut } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,7 +23,6 @@ const Register = () => {
     const password = form.password.value;
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
         if (result.user) {
           const Toast = Swal.mixin({
             toast: true,
@@ -38,17 +39,26 @@ const Register = () => {
             icon: "success",
             title: "Registered successfully. Please Login",
           });
-          userProfileUpdate(name, photo).then().then();
-          logOut();
-          navigate("/login");
+          userProfileUpdate(name, photo)
+            .then(() => {
+              const userInfo = {
+                name: name,
+                email: email,
+              };
+              axiosPublic.post("/user", userInfo).then((res) => {
+                if (res.data.insertedId) {
+                  logOut();
+                  navigate("/login");
+                }
+              });
+            })
+            .then();
         }
       })
       .then((error) => {
-        console.log(error);
+        console.error(error);
       });
     form.reset();
-
-    console.log(email, password);
   };
   const handleGoogleRegister = () => {
     googleLogin()

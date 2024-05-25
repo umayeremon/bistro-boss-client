@@ -2,13 +2,13 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useCart from "../../../Hooks/useCart";
 import CartTable from "./CartTable/CartTable";
-import useAxios from "../../../Hooks/useAxios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   const priceFix = totalPrice.toFixed(2);
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure()
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -36,13 +36,13 @@ const MyCart = () => {
   return (
     <div>
       <SectionTitle heading={"WANNA ADD MORE?"} subHeading={"---My Cart---"} />
-      <div className=" mx-auto bg-white rounded-xl py-4 px-8">
-        <div className="flex flex-row justify-between items-center uppercase font-cinzel font-bold text-xl">
+      <div className="  bg-white rounded-xl py-2 lg:py-4 px-4 lg:px-8">
+        <div className="flex flex-row justify-between items-center uppercase font-cinzel font-bold lg:text-xl">
           <h2>
-            Total orders: <span className="text-2xl"> {cart.length}</span>
+            Total orders: <span className="text-base lg:text-2xl"> {cart.length}</span>
           </h2>
           <h2>
-            total price: <span className="text-2xl"> ${priceFix}</span>
+            total price: <span className="text-base lg:text-2xl"> ${priceFix}</span>
           </h2>
           <button className="btn  bg-[#D1A054] text-white">Pay</button>
         </div>

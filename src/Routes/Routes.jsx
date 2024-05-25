@@ -8,6 +8,7 @@ import OurShop from "../Pages/OurShop/OurShop";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
+import PrivateRoute from "./PrivateRoute";
 
 const router=createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router=createBrowserRouter([
   },
   {
     path:'/dashboard',
-    element:<Dashboard/>,
+    element:<PrivateRoute><Dashboard/></PrivateRoute>,
     children:[
       {
         path:'myCart',
