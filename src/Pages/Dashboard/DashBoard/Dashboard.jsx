@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { FaCalendarDay, FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaBook, FaCalendarDay, FaHome, FaList, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaBagShopping } from "react-icons/fa6";
 import { GiWallet } from "react-icons/gi";
 import { GrContact } from "react-icons/gr";
@@ -10,7 +10,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../../Hooks/useCart";
 
 const Dashboard = () => {
-  const [cart]=useCart()
+  const [cart] = useCart();
+  const isAdmin = true;
   return (
     <div className="flex ">
       <Helmet>
@@ -26,44 +27,163 @@ const Dashboard = () => {
           </h2>
         </div>
         <div className="mt-8 lg:mt-24 pb-12">
-          <ul className="uppercase space-y-8 font-cinzel font-semibold">
-            <li>
-              <NavLink to='/dashboard/userHome' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <FaHome className="text-2xl" />
-                User Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/reservation' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <FaCalendarDay className="text-2xl" />
-                reservation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/payment' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <GiWallet className="text-2xl" />
-                payment history
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/myCart' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <FaShoppingCart className="text-2xl" />
-                my cart <span className="text-blue-900 font-inter">[{cart.length}]</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/review' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <MdRateReview className="text-2xl" />
-                add review
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/dashboard/booking' className={({isActive})=>isActive?"flex text-white items-center gap-2":"flex  items-center gap-2"}>
-                <TbBrandBooking className="text-2xl" />
-                my booking
-              </NavLink>
-            </li>
-          </ul>
+          {isAdmin ? (
+            <>
+              <ul className="uppercase space-y-8 font-cinzel font-semibold">
+                <li>
+                  <NavLink
+                    to="/dashboard/adminHome"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaHome className="text-2xl" />
+                    Admin Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/addItems"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaUtensils className="text-2xl" />
+                    add items
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manageItems"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaList className="text-2xl" />
+                    manage items
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manageBookings"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaBook className="text-2xl" />
+                    Manage bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/users"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaUsers className="text-2xl" />
+                    all users
+                  </NavLink>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <ul className="uppercase space-y-8 font-cinzel font-semibold">
+                <li>
+                  <NavLink
+                    to="/dashboard/userHome"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaHome className="text-2xl" />
+                    User Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/reservation"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaCalendarDay className="text-2xl" />
+                    reservation
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/payment"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <GiWallet className="text-2xl" />
+                    payment history
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/myCart"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <FaShoppingCart className="text-2xl" />
+                    my cart{" "}
+                    <span className="text-blue-900 font-inter">
+                      [{cart.length}]
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/review"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <MdRateReview className="text-2xl" />
+                    add review
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/booking"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "flex text-white items-center gap-2"
+                        : "flex  items-center gap-2"
+                    }
+                  >
+                    <TbBrandBooking className="text-2xl" />
+                    my booking
+                  </NavLink>
+                </li>
+              </ul>
+            </>
+          )}
         </div>
         <hr className="w-48 " />
         <div className="mt-6 lg:mt-12">
@@ -81,7 +201,10 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to='/ourShop/salads' className="flex  items-center gap-2">
+              <NavLink
+                to="/ourShop/salads"
+                className="flex  items-center gap-2"
+              >
                 <FaBagShopping className="text-2xl" />
                 Shop
               </NavLink>
@@ -96,7 +219,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex-1 bg-[#E8E8E8] p-16">
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   );
