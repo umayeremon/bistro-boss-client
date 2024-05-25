@@ -1,16 +1,14 @@
 import { useContext } from "react";
-import { RiFacebookFill } from "react-icons/ri";
-import { FaGithub } from "react-icons/fa";
-import { PiGoogleLogoLight } from "react-icons/pi";
 import registerImg from "../../assets/others/register.png";
 import "./Register.css";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Register = () => {
-  const { createUser, userProfileUpdate, googleLogin, githubLogin, logOut } =
+  const { createUser, userProfileUpdate, logOut } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -55,16 +53,8 @@ const Register = () => {
             .then();
         }
       })
-      .then((error) => {
-        console.error(error);
-      });
-    form.reset();
-  };
-  const handleGoogleRegister = () => {
-    googleLogin()
-      .then((result) => {
-        console.log(result.user);
-        if (result.user) {
+      .catch((error) => {
+        if(error){
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -77,45 +67,13 @@ const Register = () => {
             },
           });
           Toast.fire({
-            icon: "success",
-            title: "Registered successfully. Please Login",
+            icon: "error",
+            title: "Email already in use. Please login",
           });
-          logOut();
-          navigate("/login");
         }
-      })
-      .then((error) => {
-        console.log(error);
       });
   };
-  const handleGithubRegister = () => {
-    githubLogin()
-      .then((result) => {
-        console.log(result.user);
-        if (result.user) {
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            },
-          });
-          Toast.fire({
-            icon: "success",
-            title: "Registered successfully. Please Login",
-          });
-          logOut();
-          navigate("/login");
-        }
-      })
-      .then((error) => {
-        console.log(error);
-      });
-  };
+  
   return (
     <div className="flex bg-img items-center justify-center mx-2 md:mx-4 min-h-[600px] my-6 lg:my-28  shadow-2xl ">
       <div className="hero-content  flex-col md:flex-row-reverse">
@@ -190,17 +148,7 @@ const Register = () => {
             </h2>
             <h4>Or sign up with</h4>
           </div>
-          <div className="flex flex-row gap-8 mx-auto mt-4">
-            <RiFacebookFill className="text-5xl border-2 rounded-full p-2 cursor-pointer" />
-            <PiGoogleLogoLight
-              onClick={handleGoogleRegister}
-              className="text-5xl border-2 rounded-full p-2 cursor-pointer"
-            />
-            <FaGithub
-              onClick={handleGithubRegister}
-              className="text-5xl border-2 rounded-full p-2 cursor-pointer"
-            />
-          </div>
+            <SocialLogin/>
         </div>
       </div>
     </div>
