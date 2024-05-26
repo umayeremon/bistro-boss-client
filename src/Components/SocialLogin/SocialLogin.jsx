@@ -18,7 +18,7 @@ const SocialLogin = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axiosPublic.post("/user", userInfo).then((res) => {
+        axiosPublic.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {
             const Toast = Swal.mixin({
               toast: true,

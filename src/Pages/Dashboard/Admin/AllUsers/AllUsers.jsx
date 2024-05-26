@@ -2,16 +2,33 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import UserTable from "../UserTable/UserTable";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
-  const axiosSecure=useAxiosSecure();
-  const {data:users={}}=useQuery({
-    queryKey:['users'],
-    queryFn: async()=>{
-      const res= await axiosSecure.get('/users')
-      return res.data
-    }
-  })
+  const axiosSecure = useAxiosSecure();
+  const { data: users = {}, refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  const handleMakeAdmin = (id) => {
+    axiosSecure.patch(`/users/admin/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "He/She is now an admin",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <SectionTitle
@@ -40,9 +57,17 @@ const AllUsers = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                  users?.map((item,idx)=><UserTable key={idx} item={item} idx={idx}></UserTable>)
-                }
+                {users?.map((item, idx) => (
+                  <UserTable
+                    key={idx}
+                    item={item}
+                    axiosSecure={axiosSecure}
+                    refetch={refetch}
+                    handleMakeAdmin={handleMakeAdmin}
+                    idx={idx}
+                    users={users}
+                  ></UserTable>
+                ))}
               </tbody>
             </table>
           </div>

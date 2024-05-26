@@ -8,8 +8,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Register = () => {
-  const { createUser, userProfileUpdate, logOut } =
-    useContext(AuthContext);
+  const { createUser, userProfileUpdate, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const handleRegister = (e) => {
@@ -43,18 +42,18 @@ const Register = () => {
                 name: name,
                 email: email,
               };
-              axiosPublic.post("/user", userInfo).then((res) => {
+              axiosPublic.post("/users", userInfo).then((res) => {
                 if (res.data.insertedId) {
                   logOut();
-                  navigate("/login");
                 }
-              });
+                
+              });navigate("/login");
             })
             .then();
         }
       })
       .catch((error) => {
-        if(error){
+        if (error) {
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -73,7 +72,7 @@ const Register = () => {
         }
       });
   };
-  
+
   return (
     <div className="flex bg-img items-center justify-center mx-2 md:mx-4 min-h-[600px] my-6 lg:my-28  shadow-2xl ">
       <div className="hero-content  flex-col md:flex-row-reverse">
@@ -148,7 +147,7 @@ const Register = () => {
             </h2>
             <h4>Or sign up with</h4>
           </div>
-            <SocialLogin/>
+          <SocialLogin />
         </div>
       </div>
     </div>
