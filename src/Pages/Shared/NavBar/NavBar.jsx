@@ -1,12 +1,17 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import { GiShoppingCart } from "react-icons/gi";
 import useCart from "../../../Hooks/useCart";
+import useAuth from "../../../Hooks/useAuth";
+// import useAdmin from "../../../Hooks/useAdmin";
+// import { FaUsers } from "react-icons/fa";
+// import useGetUsers from "../../../Hooks/useGetUsers";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const [cart]=useCart()
+  const { user, logOut } = useAuth();
+  console.log(user);
+  const [cart] = useCart();
+  // const [isAdmin] = useAdmin();
+  // const [users]=useGetUsers
   const handleLogout = () => {
     logOut();
   };
@@ -73,10 +78,12 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <Link to='/dashboard/myCart'>
+        <Link to="/dashboard/myCart">
           <div className="bg-green-900 rounded-lg flex flex-row justify-center items-center">
             <GiShoppingCart className="text-white text-4xl px-1 py-2" />
-            <div className="badge bg-black text-white border-none mr-1">+{cart.length}</div>
+            <div className="badge bg-black text-white border-none mr-1">
+              +{cart.length}
+            </div>
           </div>
         </Link>
       </li>

@@ -8,16 +8,17 @@ import { MdRateReview } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
-    <div className="flex ">
+    <div className="flex">
       <Helmet>
         <title>BISTRO BOSS | DASHBOARD</title>
       </Helmet>
-      <div className="bg-[#D1A054] w-56 lg:w-64 min-h-screen pl-4 lg:pl-8 pt-8">
+      <div className="bg-[#D1A054] w-56 lg:w-64 min-h-screen  pl-4 lg:pl-8 pt-8">
         <div className="">
           <h1 className="text-xs md:text-base lg:text-xl font-cinzel  font-bold">
             BISTRO BOSS
@@ -218,7 +219,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="flex-1 bg-[#E8E8E8] p-16">
+      <div className="flex-1 bg-[#E8E8E8] p-4 lg:p-16">
         <Outlet />
       </div>
     </div>
